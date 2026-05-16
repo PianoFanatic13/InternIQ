@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import { Header } from "./components/layout/Header";
 import { FilterBar } from "./components/filters/FilterBar";
 import { JobListPanel } from "./components/jobs/JobListPanel";
@@ -92,6 +93,8 @@ export default function App() {
           </AnimatePresence>
         </div>
       </div>
+
+      <Analytics />
     </div>
   );
 }
