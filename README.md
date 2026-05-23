@@ -14,7 +14,7 @@ InternIQ solves this by ingesting listings from open-source community repositori
 
 The system is built as four loosely-coupled microservices coordinating through Redis (for queuing and deduplication) and PostgreSQL (for persisted state), all deployed on AWS free-tier infrastructure with a static frontend on Vercel.
 
-_This system is still in an early stage. More sources for listings will pteontailly be added in the future for more listing diversity_
+_This system is still in an early stage. More sources for listings will potentially be added in the future for more listing diversity_
 
 ## Architecture
 
