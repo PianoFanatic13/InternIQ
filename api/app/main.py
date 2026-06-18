@@ -219,7 +219,7 @@ def list_jobs(
         params["source"] = source
 
     sort_clause = {
-        "date_desc": "date_ingested DESC",
+        "date_desc": "date_posted DESC, date_ingested DESC",
         "pay_desc": "estimated_pay_hourly DESC NULLS LAST",
         "company": "company_name ASC",
     }[sort]
