@@ -37,8 +37,7 @@ services:
   ingestor:
     build:
       context: ./ingestor
-    container_name: interniq-ingestor
-    restart: unless-stopped
+    profiles: ["manual"]
     environment:
       DATABASE_URL: ${DATABASE_URL}
       REDIS_URL: ${REDIS_URL}
