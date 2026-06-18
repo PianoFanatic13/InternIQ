@@ -160,6 +160,7 @@ def list_jobs(
     remote_only: Optional[bool] = Query(None),
     sponsors_visa: Optional[bool] = Query(None),
     source: Optional[str] = Query(None),
+    max_age_days: int = Query(30, ge=0, le=365, description="Hide jobs posted longer than this many days ago. 0 disables the filter."),
     sort: str = Query("date_desc", pattern="^(date_desc|pay_desc|company)$"),
     page: int = Query(1, ge=1),
     page_size: int = Query(25, ge=1, le=100),
@@ -217,6 +218,10 @@ def list_jobs(
     if source:
         conditions.append("source = :source")
         params["source"] = source
+
+    if max_age_days > 0:
+        conditions.append("date_posted >= NOW() - (INTERVAL '1 day' * :max_age_days)")
+        params["max_age_days"] = max_age_days
 
     sort_clause = {
         "date_desc": "date_posted DESC, date_ingested DESC",
