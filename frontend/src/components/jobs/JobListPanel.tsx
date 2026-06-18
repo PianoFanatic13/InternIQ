@@ -44,9 +44,9 @@ export function JobListPanel({
   }, [selectedIndex]);
 
   return (
-    <div className="flex flex-col h-full border-r border-[#E0D8CC] bg-white relative">
+    <div className="flex flex-col h-full border-r border-[#E5E7EB] bg-white relative">
       {isFetching && !isLoading && (
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#1D5BDA]/40 animate-pulse z-10" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#1D5BDA]/30 animate-pulse z-10" />
       )}
 
       <div

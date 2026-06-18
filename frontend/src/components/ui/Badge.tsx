@@ -14,17 +14,17 @@ export type BadgeVariant =
   | "unknown";
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default:  "bg-[#F0EAE0] text-[#5C5470]",
-  remote:   "bg-cyan-50 text-cyan-700 ring-1 ring-cyan-200",
-  visa:     "bg-violet-50 text-violet-700 ring-1 ring-violet-200",
-  pay:      "bg-blue-50 text-[#1D5BDA] ring-1 ring-blue-200",
-  tech:     "bg-[#F0EAE0] text-[#1D5BDA]",
-  source:   "bg-[#F5F0E8] text-[#A09AB0]",
-  grad:     "bg-blue-50 text-[#1D5BDA] ring-1 ring-blue-100",
-  success:  "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
-  warning:  "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+  default:  "bg-[#F3F4F6] text-[#6B7280]",
+  remote:   "bg-cyan-50 text-cyan-700",
+  visa:     "bg-violet-50 text-violet-700",
+  pay:      "bg-[#EFF6FF] text-[#1D5BDA]",
+  tech:     "bg-[#F3F4F6] text-[#374151]",
+  source:   "bg-transparent text-[#9CA3AF]",
+  grad:     "bg-[#EFF6FF] text-[#1D5BDA]",
+  success:  "bg-emerald-50 text-emerald-700",
+  warning:  "bg-amber-50 text-amber-700",
   partial:  "bg-amber-50 text-amber-600",
-  unknown:  "bg-[#F0EAE0] text-[#A09AB0]",
+  unknown:  "bg-[#F3F4F6] text-[#9CA3AF]",
 };
 
 const monoVariants: BadgeVariant[] = ["pay", "tech", "source"];
@@ -40,11 +40,11 @@ export function Badge({ label, variant = "default", className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium leading-none",
+        "inline-flex items-center rounded px-2 py-0.5 text-[11px] font-medium leading-none",
         variantStyles[variant],
         className
       )}
-      style={isMono ? { fontFamily: "var(--font-mono)", fontSize: "11px" } : undefined}
+      style={isMono ? { fontFamily: "var(--font-mono)" } : undefined}
     >
       {label}
     </span>

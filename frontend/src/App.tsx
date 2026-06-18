@@ -32,7 +32,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[#F5F0E8] overflow-hidden">
+    <div className="flex flex-col h-screen bg-white overflow-hidden">
       <Header />
 
       <FilterBar
@@ -44,7 +44,7 @@ export default function App() {
       />
 
       {isError && (
-        <div className="px-4 py-2 bg-red-50 border-b border-red-200 text-xs text-red-600" style={{ fontFamily: "var(--font-mono)" }}>
+        <div className="px-4 py-2 bg-red-50 border-b border-red-100 text-xs text-red-500" style={{ fontFamily: "var(--font-mono)" }}>
           ⚠ Failed to connect to API. Is the backend running on port 8000?
         </div>
       )}
@@ -65,15 +65,15 @@ export default function App() {
         </div>
 
         {/* Right: detail panel — fluid */}
-        <div className="flex-1 overflow-hidden relative bg-[#F5F0E8]">
+        <div className="flex-1 overflow-hidden relative bg-white">
           <AnimatePresence mode="wait">
             {selectedJobId ? (
               <motion.div
                 key={selectedJobId}
-                initial={{ opacity: 0, x: 24 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 24 }}
-                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0"
               >
                 <JobDetailPanel jobId={selectedJobId} />

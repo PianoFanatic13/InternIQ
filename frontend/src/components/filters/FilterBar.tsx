@@ -19,7 +19,7 @@ export function FilterBar({ filters, onUpdate, onReset, activeFilterCount, total
   return (
     <div
       data-testid="filter-bar"
-      className="flex items-end gap-4 flex-wrap px-5 py-3 border-b border-[#E0D8CC] bg-white sticky top-0 z-10"
+      className="flex items-end gap-4 flex-wrap px-5 py-3 border-b border-[#E5E7EB] bg-white sticky top-0 z-10"
     >
       <GradYearSelect
         value={filters.grad_year}
@@ -44,7 +44,7 @@ export function FilterBar({ filters, onUpdate, onReset, activeFilterCount, total
         {totalJobs !== null && (
           <span
             className="text-[11px] mb-1.5"
-            style={{ color: "#A09AB0", fontFamily: "var(--font-mono)" }}
+            style={{ color: "#9CA3AF", fontFamily: "var(--font-mono)" }}
           >
             {totalJobs.toLocaleString()} results
           </span>
@@ -52,7 +52,7 @@ export function FilterBar({ filters, onUpdate, onReset, activeFilterCount, total
         {activeFilterCount > 0 && (
           <button
             onClick={onReset}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold text-[#1D5BDA] border border-[#BFDBFE] hover:bg-[#EEF4FF] transition-colors duration-150 mb-0.5"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold text-[#1D5BDA] border border-[#BFDBFE] hover:bg-[#EFF6FF] transition-colors duration-150 mb-0.5"
           >
             Clear
             <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#1D5BDA] text-white text-[10px] font-bold leading-none">

@@ -15,8 +15,8 @@ export function Pagination({ pagination, onPageChange }: PaginationProps) {
   const end = Math.min(page * page_size, total);
 
   return (
-    <div className="flex items-center justify-between px-4 py-2.5 border-t border-[#E0D8CC] bg-white">
-      <span className="text-[11px] text-[#A09AB0]" style={{ fontFamily: "var(--font-mono)" }}>
+    <div className="flex items-center justify-between px-4 py-2.5 border-t border-[#E5E7EB] bg-white">
+      <span className="text-[11px] text-[#9CA3AF]" style={{ fontFamily: "var(--font-mono)" }}>
         {start}–{end} of {total}
       </span>
       <div className="flex items-center gap-0.5">
@@ -26,15 +26,15 @@ export function Pagination({ pagination, onPageChange }: PaginationProps) {
           className={cn(
             "px-2 py-1 rounded text-xs transition-colors duration-150",
             page <= 1
-              ? "text-[#C8BDB0] cursor-not-allowed"
-              : "text-[#5C5470] hover:text-[#1A1624] hover:bg-[#F0EAE0]"
+              ? "text-[#D1D5DB] cursor-not-allowed"
+              : "text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB]"
           )}
         >
           ←
         </button>
         {getPageNumbers(page, totalPages).map((p, i) =>
           p === "..." ? (
-            <span key={`e-${i}`} className="px-1 text-xs text-[#C8BDB0]">…</span>
+            <span key={`e-${i}`} className="px-1 text-xs text-[#D1D5DB]">…</span>
           ) : (
             <button
               key={p}
@@ -43,9 +43,9 @@ export function Pagination({ pagination, onPageChange }: PaginationProps) {
                 "min-w-[28px] px-2 py-1 rounded text-xs transition-colors duration-150",
                 p === page
                   ? "bg-[#1D5BDA] text-white font-medium"
-                  : "text-[#5C5470] hover:text-[#1A1624] hover:bg-[#F0EAE0]"
+                  : "text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB]"
               )}
-              style={p !== page ? { fontFamily: "var(--font-mono)" } : { fontFamily: "var(--font-mono)" }}
+              style={{ fontFamily: "var(--font-mono)" }}
             >
               {p}
             </button>
@@ -57,8 +57,8 @@ export function Pagination({ pagination, onPageChange }: PaginationProps) {
           className={cn(
             "px-2 py-1 rounded text-xs transition-colors duration-150",
             page >= totalPages
-              ? "text-[#C8BDB0] cursor-not-allowed"
-              : "text-[#5C5470] hover:text-[#1A1624] hover:bg-[#F0EAE0]"
+              ? "text-[#D1D5DB] cursor-not-allowed"
+              : "text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB]"
           )}
         >
           →

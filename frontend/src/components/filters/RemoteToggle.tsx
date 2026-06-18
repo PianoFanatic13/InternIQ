@@ -10,7 +10,7 @@ export function RemoteToggle({ checked, onChange }: RemoteToggleProps) {
     <div className="flex flex-col gap-1">
       <span
         className="text-[10px] font-semibold uppercase tracking-widest"
-        style={{ color: "#A09AB0", letterSpacing: "0.1em" }}
+        style={{ color: "#9CA3AF", letterSpacing: "0.1em" }}
       >
         Remote
       </span>

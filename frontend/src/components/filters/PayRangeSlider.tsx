@@ -6,10 +6,10 @@ interface PayRangeSliderProps {
 }
 
 const inputStyle: React.CSSProperties = {
-  background: "#F5F0E8",
-  color: "#1A1624",
-  border: "1px solid #E0D8CC",
-  borderRadius: "6px",
+  background: "#FFFFFF",
+  color: "#111827",
+  border: "1px solid #E5E7EB",
+  borderRadius: "4px",
   padding: "5px 8px",
   fontSize: "12px",
   fontFamily: "var(--font-mono)",
@@ -22,7 +22,7 @@ export function PayRangeSlider({ minPay, maxPay, onMinChange, onMaxChange }: Pay
     <div className="flex flex-col gap-1">
       <label
         className="text-[10px] font-semibold uppercase tracking-widest"
-        style={{ color: "#A09AB0", letterSpacing: "0.1em" }}
+        style={{ color: "#9CA3AF", letterSpacing: "0.1em" }}
       >
         Pay ($/hr)
       </label>
@@ -35,7 +35,7 @@ export function PayRangeSlider({ minPay, maxPay, onMinChange, onMaxChange }: Pay
           min={0}
           onChange={(e) => onMinChange(e.target.value ? parseInt(e.target.value) : null)}
         />
-        <span className="text-xs" style={{ color: "#C8BDB0" }}>–</span>
+        <span className="text-xs" style={{ color: "#D1D5DB" }}>–</span>
         <input
           type="number"
           placeholder="Max"

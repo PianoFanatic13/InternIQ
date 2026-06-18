@@ -30,27 +30,27 @@ export function TechStackInput({ value, onChange }: TechStackInputProps) {
     <div className="flex flex-col gap-1">
       <label
         className="text-[10px] font-semibold uppercase tracking-widest"
-        style={{ color: "#A09AB0", letterSpacing: "0.1em" }}
+        style={{ color: "#9CA3AF", letterSpacing: "0.1em" }}
       >
         Tech Stack
       </label>
       <div
-        className="flex flex-wrap items-center gap-1 min-h-[32px] px-2 py-1 rounded-md cursor-text"
-        style={{ background: "#F5F0E8", border: "1px solid #E0D8CC" }}
+        className="flex flex-wrap items-center gap-1 min-h-[32px] px-2 py-1 rounded cursor-text"
+        style={{ background: "#FFFFFF", border: "1px solid #E5E7EB" }}
         onClick={() => inputRef.current?.focus()}
       >
         {value.map((tech) => (
           <span
             key={tech}
-            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] text-[#1D5BDA] bg-[#DBEAFE]"
+            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] text-[#1D5BDA] bg-[#EFF6FF]"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             {tech}
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); removeTech(tech); }}
-              className="leading-none hover:text-[#1A1624] transition-colors"
-              style={{ color: "#93BFFC" }}
+              className="leading-none hover:text-[#111827] transition-colors"
+              style={{ color: "#93C5FD" }}
             >
               ×
             </button>
@@ -68,7 +68,7 @@ export function TechStackInput({ value, onChange }: TechStackInputProps) {
             background: "transparent",
             border: "none",
             outline: "none",
-            color: "#1A1624",
+            color: "#111827",
             fontSize: "12px",
             fontFamily: "var(--font-mono)",
             width: "80px",
