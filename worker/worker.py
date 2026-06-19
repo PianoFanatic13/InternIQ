@@ -109,14 +109,18 @@ class JobMetadata(BaseModel):
         default=False,
         description="True if earlier or later graduation years are explicitly accepted"
     )
-    estimated_pay: Optional[float] = Field(
+    estimated_pay_hourly: Optional[int] = Field(
         default=None,
         description=(
-            "Representative pay amount as an integer for sorting/filtering; "
-            "interpreted using salary_unit"
+            "Pay rate in US dollars per hour as an integer. "
+            "If the posting gives annual salary, divide by 2080 (40 hrs/wk × 52 wks). "
+            "If monthly, divide by approximately 173. "
+            "If weekly, divide by 40. "
+            "If daily, divide by 8. "
+            "If a range is given, use the midpoint. "
+            "If no pay information is in the posting, return null — do not guess."
         )
     )
-    salary_unit: Optional[str] = Field(description="hourly or annual")
     tech_stack: Optional[List[str]] = Field(
         default=None,
         description=(
@@ -573,6 +577,9 @@ Extract all fields from the job description below and return them as structured 
 Follow each field's description exactly. When information is not present, use null or
 false as appropriate — do not guess or hallucinate values.
 
+For estimated_pay_hourly: always convert to hourly rate before returning. If the posting
+shows annual, monthly, weekly, or daily pay, do the math and return the hourly equivalent.
+
 Job description:
 {raw_text}"""
 
@@ -609,13 +616,9 @@ def extract_metadata(raw_text: str, structured_llm=None) -> Optional[JobMetadata
         if result.required_grad_year is not None and result.required_grad_year not in _VALID_GRAD_YEAR_RANGE:
             result.required_grad_year = None
 
-        if result.estimated_pay is not None:
-            if result.salary_unit == "hourly" and result.estimated_pay > _MAX_HOURLY_PAY:
-                result.estimated_pay = None
-                result.salary_unit = None
-            elif result.salary_unit == "annual" and result.estimated_pay > _MAX_HOURLY_PAY * 2080:
-                result.estimated_pay = None
-                result.salary_unit = None
+        if result.estimated_pay_hourly is not None:
+            if result.estimated_pay_hourly > _MAX_HOURLY_PAY or result.estimated_pay_hourly < 5:
+                result.estimated_pay_hourly = None
 
         if result.tech_stack is not None:
             seen: set[str] = set()
@@ -692,13 +695,6 @@ def save_to_database(
         date_posted = datetime.fromtimestamp(int(date_posted_str), tz=timezone.utc)
         date_processed = datetime.now(tz=timezone.utc)
 
-        pay = metadata.estimated_pay
-        if pay is not None:
-            if metadata.salary_unit == "annual":
-                pay = round(pay / 2080)  # 40 hrs/week × 52 weeks
-            else:
-                pay = round(pay)  # coerce float hourly values to int
-
         params = {
             "url": job_stream_data["url"],
             "url_hash": job_stream_data["url_hash"],
@@ -708,7 +704,7 @@ def save_to_database(
             "is_remote": metadata.is_remote,
             "required_grad_year": metadata.required_grad_year,
             "grad_year_flexible": metadata.grad_year_flexible,
-            "estimated_pay_hourly": pay,
+            "estimated_pay_hourly": metadata.estimated_pay_hourly,
             "tech_stack": metadata.tech_stack or [],
             "sponsors_visa": metadata.sponsors_visa,
             "raw_description": raw_text,
